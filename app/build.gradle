@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/heshuiguang/Documents/文档/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
+            storePassword 'hl123456'
+            keyAlias = 'houlang'
+            keyPassword 'hl123456'
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.jybwz.hlgame"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+
+        //添加so过滤,目前sdk只提供'armeabi-v7a', 'x86', 'arm64-v8a','x86_64',请根据游戏添加配置
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a','x86_64'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+
+
+    //添加jni指向
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
+        }
+    }
+}
+
+
+repositories{
+    flatDir{
+        dirs 'libs'
+        //引用依赖库的libs路径
+        dirs project(':adgamesdk').file('libs')
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':adgamesdk')
+}

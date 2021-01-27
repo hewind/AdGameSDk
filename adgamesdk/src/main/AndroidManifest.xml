@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.game.adgamesdk" >
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许联网 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 检测联网方式，区分设备当前网络是2G、3G、4G还是WiFi -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取MAC地址，和设备标识一起作为用户标识 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- 获取设备标识，标识用户 -->
+
+</manifest>

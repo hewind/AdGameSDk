@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/load_reward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载激励视频" />
+
+    <Button
+        android:id="@+id/show_reward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示激励视频" />
+
+
+    <Button
+        android:id="@+id/load_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载全屏视频" />
+
+    <Button
+        android:id="@+id/show_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示全屏视频" />
+
+    <Button
+        android:id="@+id/submitInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上报角色信息" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出" />
+
+    <Button
+        android:id="@+id/payReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="上报支付" />
+
+    <Button
+        android:id="@+id/pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="发起支付" />
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdk
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.compileSdk
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        //版本开发模式，此设置可在BuildConfig类中生成一个buildModel的静态变量
+        buildConfigField 'boolean','buildModel',"${rootProject.ext.buildModel}"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        //添加so过滤,目前sdk只提供'armeabi-v7a', 'x86', 'arm64-v8a','x86_64',请根据游戏添加配置
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a','x86_64'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+
+    //添加jni指向
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
+        }
+    }
+
+
+
+}
+
+repositories{
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+
+    boolean buildModel = rootProject.ext.buildModel;
+
+    def implementationAarJar = {
+        //添加依赖（）
+        fileTree(dir: 'libs', include: ['*.aar','*.jar']).each { File file ->
+            def name = file.name.lastIndexOf('.').with { it != -1 ? file.name[0..<it] : file.name };
+            if (file.name.endsWith(".aar")){
+                api(name: name, ext: 'aar')
+            }else if (file.name.endsWith(".jar")){//如果是jar包
+                if(buildModel){
+                    compileOnly files('libs/'+file.name)
+                }else {
+                    api files('libs/'+file.name)
+                }
+            }
+        }
+    }
+    implementationAarJar()
+}

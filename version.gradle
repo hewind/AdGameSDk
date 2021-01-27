@@ -1,0 +1,57 @@
+
+
+//版本管理
+ext{
+    //融合SDK版本
+    versionCode = 1
+    versionName = 'v20200616'
+
+    //Android SDK版本（注：因使用的第三方SDK中存在最低支持的库为api17，故这里只能兼容到最低17）
+    minSdk = 19
+    targetSdk = 29
+    compileSdk = 29
+
+    //开发模式开关
+    buildModel = false //true 发布模式，false 调试模式
+
+}
+
+
+
+
+
+
+
+
+//----------------------------------以下为aar自动打包脚本--------------------------------------------
+
+
+//打包输出位置
+String outputDir = '/Users/heshuiguang/Documents/文档/项目/其他/广告SDK/sdk/libs/'
+
+String libraryName = 'adgamesdk'
+String endName = '_' + rootProject.ext.versionName + ".aar"//重命名aar包名
+String dir_output = '/build/outputs/aar/'//aar包默认输出目录
+
+/**
+ * 开始打融合SDK aar
+ */
+task callBuild(type:Exec){
+    group 'build'
+    workingDir libraryName
+    commandLine 'gradle','build'
+}
+//拷贝融合SDK aar到输出目录
+task copyAAR(type: Copy,dependsOn:['callBuild']){
+    String oldName = libraryName + '-release.aar'
+    String newAarName = libraryName + endName
+
+    group 'build'
+    from libraryName + dir_output
+    into outputDir
+    include(oldName)//只复制特定的文件
+    rename(oldName,newAarName)//重命名
+}
+
+
+
