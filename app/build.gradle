@@ -8,6 +8,12 @@ android {
             keyAlias = 'houlang'
             keyPassword 'hl123456'
         }
+        release {
+            storeFile file('/Users/heshuiguang/Documents/文档/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
+            storePassword 'hl123456'
+            keyAlias = 'houlang'
+            keyPassword 'hl123456'
+        }
     }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -29,10 +35,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
         debug {
             signingConfig signingConfigs.debug
+        }
+    }
+
+    // 定义编译生成的apk名格式
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def newName
+            if ('true' == IS_JENKINS) {
+                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}-jenkins.apk"
+            } else {
+                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}.apk"
+            }
+            output.outputFileName newName
         }
     }
 

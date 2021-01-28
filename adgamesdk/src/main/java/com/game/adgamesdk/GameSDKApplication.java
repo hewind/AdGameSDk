@@ -22,6 +22,8 @@ public class GameSDKApplication extends Application {
         GameSDKPlatform.app().onAppAttachBaseContext(base);
     }
 
-
-
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 }
