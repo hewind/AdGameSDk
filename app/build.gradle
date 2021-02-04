@@ -47,9 +47,9 @@ android {
         variant.outputs.each { output ->
             def newName
             if ('true' == IS_JENKINS) {
-                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-jenkins.apk"
+                newName = "$APK_NAME-${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-jenkins.apk"
             } else {
-                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-studio.apk"
+                newName = "$APK_NAME-${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-studio.apk"
             }
             output.outputFileName newName
         }
