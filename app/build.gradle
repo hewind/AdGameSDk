@@ -21,8 +21,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName "1.2"
         signingConfig signingConfigs.debug
 
         //添加so过滤,目前sdk只提供'armeabi-v7a', 'x86', 'arm64-v8a','x86_64',请根据游戏添加配置
@@ -53,6 +52,9 @@ android {
             output.outputFileName newName
         }
     }
+
+    println("IS_JENKINS = "+IS_JENKINS)
+    println("test2 = "+test2)
 
 
 
