@@ -53,9 +53,10 @@ android {
         }
     }
 
-    println("version = "+System.properties['version'])
+    //测试Jenkins 【Build Steps】中的System properties功能，该参数在Jenkins项目配置中添加后，编译时可以在此处动态获取Jenkins上的值。
+    println("testSystemProperties = "+System.properties['testSystemProperties'])
+    //测试Jenkins 【参数化构建过程】的选项参数功能，该参数在Jenkins项目配置中添加后，编译时可以在此处动态获取Jenkins上的值。
     println("IS_JENKINS = "+IS_JENKINS)
-    println("test2 = "+test2)
 
 
 
