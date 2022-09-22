@@ -3,20 +3,19 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/heshuiguang/Documents/文档/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
+            storeFile file('/Users/heshuiguang/Documents/project/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
             storePassword 'hl123456'
             keyAlias = 'houlang'
             keyPassword 'hl123456'
         }
         release {
-            storeFile file('/Users/heshuiguang/Documents/文档/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
+            storeFile file('/Users/heshuiguang/Documents/project/项目/其他/渠道包/安卓+广告平台聚合SDK/houlang签名/houlang.keystore')
             storePassword 'hl123456'
             keyAlias = 'houlang'
             keyPassword 'hl123456'
         }
     }
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.jybwz.hlgame"
         minSdkVersion 19
@@ -47,9 +46,9 @@ android {
         variant.outputs.each { output ->
             def newName
             if ('true' == IS_JENKINS) {
-                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-jenkins.apk"
+                newName = "$APK_NAME-${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-jenkins.apk"
             } else {
-                newName = "$APK_NAME-v${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-studio.apk"
+                newName = "$APK_NAME-${VERSION_NAME}-${variant.buildType.name}-${BuildTime()}-studio.apk"
             }
             output.outputFileName newName
         }
