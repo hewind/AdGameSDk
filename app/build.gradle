@@ -53,6 +53,7 @@ android {
         }
     }
 
+    println("version = "+System.properties['version'])
     println("IS_JENKINS = "+IS_JENKINS)
     println("test2 = "+test2)
 
